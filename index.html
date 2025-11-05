@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CPU Scheduling Visualizer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="main-layout">
+    <!-- Left: Algorithm Cards -->
+    <aside class="algos-side">
+      <h2>Algorithms</h2>
+      <div id="algoCards" class="algo-cards"></div>
+    </aside>
+    <!-- Right: App Functions -->
+    <main class="content-side">
+      <section class="glass input-card">
+        <h2 id="selectedAlgoName">Select an Algorithm</h2>
+        <form id="addProcessForm">
+          <input type="text" id="pid" placeholder="PID" required>
+          <input type="number" id="arrival" placeholder="Arrival Time" min="0" required>
+          <input type="number" id="burst" placeholder="Burst Time" min="1" required>
+          <input type="number" id="priority" placeholder="Priority" min="1" style="display:none;">
+          <button type="submit">Add Process</button>
+        </form>
+        <div id="quantumField" style="display:none;">
+          <input type="number" id="quantum" placeholder="Time Quantum" min="1">
+        </div>
+        <div class="actions">
+          <button id="resetBtn" type="button">Reset</button>
+          <button id="runBtn" type="button">Simulate</button>
+          <button id="exportBtn" type="button">Export Image</button>
+        </div>
+        <table id="processTable">
+          <thead>
+            <tr>
+              <th>PID</th>
+              <th>Arrival</th>
+              <th>Burst</th>
+              <th class="priorityCol" style="display:none;">Priority</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+      <section class="glass chart-card">
+        <div class="simulation-controls">
+          <button id="playPauseBtn" type="button">▶</button>
+        </div>
+        <canvas id="ganttChart" width="780" height="110"></canvas>
+        <div id="timeline"></div>
+      </section>
+      <section class="glass metrics-card">
+        <h3>Results</h3>
+        <div id="resultsSummary"></div>
+      </section>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
